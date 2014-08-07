@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        body {background:#eee; font-family:Arial, Helvetica, sans-serif;}
+
+        .speedy-rating {}
+        .speedy-rating .speedy-rating-star {background:url(images/rating_single_off.png) no-repeat 0 0; width:28px; height:28px; display:inline-block; cursor:pointer;}
+        .speedy-rating .speedy-rating-star-on {background:url(images/rating_single_on.png) no-repeat 0 0;}
+        .speedy-rating:active {opacity:0.8;}
+    </style>
+</head>
+<body>
+<form method="get" action="">
+    <select class="speedy-rating" name="speedyrating">
+        <option value="0">Select</option>
+        <option>1</option>
+        <option selected="selected">2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+    <select class="speedy-rating" name="speedyrating2">
+        <option value="0" selected="selected">Select</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <select class="speedy-rating" name="speedyrating3">
+        <option value="0">Select</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4" selected="selected">4</option>
+        <option value="5">5</option>
+    </select>
+    <input type="submit" name="test" value="submit" />
+</form>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="speedy-rating.js"></script>
+<script type="text/javascript">
+    $(function(){
+        //$('.speedyrating').SpeedyRating();
+    });
+
+</script>
+</body>
+</html>
