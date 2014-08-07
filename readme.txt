@@ -1,15 +1,22 @@
-speed-rating.js
+speedy-rating.js
 
 @@@@@@@@@@
 How To Use
 @@@@@@@@@@
 
+Requires: jQuery 1.7+
+
 Options:
-   param : default value : all values
-// none
+    param : default value : all values
+//  none
+
+Define a new Speedy Rating:
+	---
+	$('.i-am-a-select-box').SpeedyRating();
+	---
 
 View index.html for example code.
-Any select boxes with a class of "speedy-rating" is automatically applied.
+Any select boxes with a class of "speedy-rating" are automatically applied.
 
 Minimum required select (must have 1 to 5 in option values):
 <select>
@@ -20,10 +27,6 @@ Minimum required select (must have 1 to 5 in option values):
     <option>5</option>
 </select>
 
-Define a new Speedy Rating:
-	---
-	$('.i-am-a-select-box').SpeedyRating();
-	---
 
 @@@@@@@@@@@@@
 Things to Add
