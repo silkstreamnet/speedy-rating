@@ -8,7 +8,8 @@ Requires: jQuery 1.7+
 
 Options:
     param : default value : all values
--   html : '' : {string}
+-   html_on : '' : {string}
+-   html_off : '' : {string}
 
 Define a new Speedy Rating:
 	---
@@ -40,9 +41,8 @@ Updates
 @@@@@@@
 
 === v1-1 (stable) ===
-- added 'html' setting, adds html to each star item
-- added 'html_on' setting
-- added 'html_off' setting
+- added 'html_on' setting, adds html to each star item
+- added 'html_off' setting, adds html to each star item
 
 === v1-0 (stable) ===
 - created

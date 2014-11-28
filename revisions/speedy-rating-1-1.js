@@ -2,7 +2,6 @@
 (function($){
 
     var defaults = {
-        html:'',
         html_on:'',
         html_off:''
     };
@@ -100,7 +99,7 @@
             var op = getSelectOption(originobject,i);
             if (op.length)
             {
-                html += '<div class="speedy-rating-star speedy-rating-star-'+i+'" data-rating="'+i+'">'+settings.html+'</div>';
+                html += '<div class="speedy-rating-star speedy-rating-star-'+i+'" data-rating="'+i+'">'+settings.html_off+'</div>';
             }
             else
             {
