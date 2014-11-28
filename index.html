@@ -7,7 +7,9 @@
 
         .speedy-rating {}
         .speedy-rating .speedy-rating-star {background:url(images/rating_single_off.png) no-repeat 0 0; width:28px; height:28px; display:inline-block; cursor:pointer;}
+        .speedy-rating .speedy-rating-star div {width:100%; height:100%; background: #ccc;}
         .speedy-rating .speedy-rating-star-on {background:url(images/rating_single_on.png) no-repeat 0 0;}
+        .speedy-rating .speedy-rating-star-on div {background:#000;}
         .speedy-rating:active {opacity:0.8;}
     </style>
 </head>
@@ -43,7 +45,7 @@
 <script type="text/javascript" src="speedy-rating.js"></script>
 <script type="text/javascript">
     $(function(){
-        $('.speedyrating').SpeedyRating({html_on:'<em></em>',html_off:'<strong></strong>'});
+        $('.speedyrating').SpeedyRating({html_on:'<div></div>',html_off:'<div></div>'});
     });
 
 </script>

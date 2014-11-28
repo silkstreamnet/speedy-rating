@@ -114,17 +114,23 @@
             originobject.after(html).hide();
 
             var object = $('.speedy-rating[data-elid="'+elid+'"]');
+            var last_hit = false;
 
             if (object.length)
             {
-                object.find('.speedy-rating-star').on('mouseover',function(){
-                    var _this = $(this);
-                    var _rating = parseInt(_this.attr('data-rating'));
-
-                    if (_rating && _rating <= 5 && _rating >= 1)
+                object.find('.speedy-rating-star').on('mouseenter',function(){
+                    if (last_hit != this)
                     {
-                        displayRating(settings,object,_rating);
+                        last_hit = this;
+                        var _this = $(this);
+                        var _rating = parseInt(_this.attr('data-rating'));
+
+                        if (_rating && _rating <= 5 && _rating >= 1)
+                        {
+                            displayRating(settings,object,_rating);
+                        }
                     }
+                    return false;
                 }).on('click',function(){
                     var _this = $(this);
                     var _rating = parseInt(_this.attr('data-rating'));
@@ -143,7 +149,7 @@
                     }
                 });
 
-                object.on('mouseout',function(){
+                object.on('mouseleave',function(){
                     var _this = $(this);
                     var _rating = _els[elid].setrating;
 
@@ -153,8 +159,10 @@
                     }
                     else
                     {
-                        _this.find('.speedy-rating-star').removeClass('speedy-rating-star-on');
+                        _this.find('.speedy-rating-star').removeClass('speedy-rating-star-on').html(settings.html_off);
                     }
+
+                    last_hit = false;
                 });
 
                 //check if value loaded
