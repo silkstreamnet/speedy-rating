@@ -2,7 +2,9 @@
 (function($){
 
     var defaults = {
-        html:''
+        html:'',
+        html_on:'',
+        html_off:''
     };
 
     var _els = [];
@@ -42,18 +44,18 @@
         return settings.elid;
     }
 
-    function displayRating(object,rating)
+    function displayRating(settings,object,rating)
     {
-        if (object && object.length && rating && rating >= 1 && rating <= 5)
+        if (settings && object && object.length && rating && rating >= 1 && rating <= 5)
         {
             for (var j=1; j<=rating; j++)
             {
-                object.find('.speedy-rating-star[data-rating="'+j+'"]').addClass('speedy-rating-star-on');
+                object.find('.speedy-rating-star[data-rating="'+j+'"]').addClass('speedy-rating-star-on').html(settings.html_on);
             }
 
             for (var k=5; k>rating; k--)
             {
-                object.find('.speedy-rating-star[data-rating="'+k+'"]').removeClass('speedy-rating-star-on');
+                object.find('.speedy-rating-star[data-rating="'+k+'"]').removeClass('speedy-rating-star-on').html(settings.html_off);
             }
         }
     }
@@ -122,7 +124,7 @@
 
                     if (_rating && _rating <= 5 && _rating >= 1)
                     {
-                        displayRating(object,_rating);
+                        displayRating(settings,object,_rating);
                     }
                 }).on('click',function(){
                     var _this = $(this);
@@ -148,7 +150,7 @@
 
                     if (_rating >=1 && _rating <= 5)
                     {
-                        displayRating(_this,_rating);
+                        displayRating(settings,_this,_rating);
                     }
                     else
                     {
@@ -160,7 +162,7 @@
                 var start_rating = originobject.val();
                 if (start_rating && start_rating >= 1 && start_rating <= 5)
                 {
-                    displayRating(object,start_rating);
+                    displayRating(settings,object,start_rating);
                     _els[elid].setrating = start_rating;
                 }
 

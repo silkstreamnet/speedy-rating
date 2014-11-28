@@ -41,6 +41,8 @@ Updates
 
 === v1-1 (stable) ===
 - added 'html' setting, adds html to each star item
+- added 'html_on' setting
+- added 'html_off' setting
 
 === v1-0 (stable) ===
 - created
