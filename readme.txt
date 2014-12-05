@@ -40,6 +40,9 @@ Things to Add
 Updates
 @@@@@@@
 
+=== v1-2 (stable) ===
+- fixed issue with events not firing select update (noticeable on touch devices)
+
 === v1-1 (stable) ===
 - added 'html_on' setting, adds html to each star item
 - added 'html_off' setting, adds html to each star item

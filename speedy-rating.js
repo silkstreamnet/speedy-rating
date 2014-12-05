@@ -1,4 +1,3 @@
-
 (function($){
 
     var defaults = {
@@ -59,35 +58,6 @@
         }
     }
 
-    function getSelectOption(select,value)
-    {
-        if (select && select.length && value)
-        {
-            var option = false;
-            var options = select.find('option');
-            options.each(function(){
-                if (option === false)
-                {
-                    var _this = $(this);
-                    var _value = _this.attr('value');
-                    var _text = _this.text();
-
-                    if (_value && _value == value)
-                    {
-                        option = _this;
-                    }
-                    else if (_text && _text == value)
-                    {
-                        option = _this;
-                    }
-                }
-            });
-
-            return option;
-        }
-        return false;
-    }
-
     function create(originobject,settings)
     {
         var elid = _new(originobject,settings);
@@ -96,16 +66,7 @@
         var html = '<div class="speedy-rating" data-elid="'+elid+'">';
         for (var i=1; i<=5; i++)
         {
-            var op = getSelectOption(originobject,i);
-            if (op.length)
-            {
-                html += '<div class="speedy-rating-star speedy-rating-star-'+i+'" data-rating="'+i+'">'+settings.html_off+'</div>';
-            }
-            else
-            {
-                error = true;
-                break;
-            }
+            html += '<div class="speedy-rating-star speedy-rating-star-'+i+'" data-rating="'+i+'">'+settings.html_off+'</div>';
         }
         html += '</div>';
 
@@ -118,51 +79,56 @@
 
             if (object.length)
             {
-                object.find('.speedy-rating-star').on('mouseenter',function(){
-                    if (last_hit != this)
-                    {
-                        last_hit = this;
-                        var _this = $(this);
-                        var _rating = parseInt(_this.attr('data-rating'));
-
-                        if (_rating && _rating <= 5 && _rating >= 1)
-                        {
-                            displayRating(settings,object,_rating);
-                        }
-                    }
-                    return false;
-                }).on('click',function(){
-                    var _this = $(this);
-                    var _rating = parseInt(_this.attr('data-rating'));
-                    if (_rating)
-                    {
-                        var _option = getSelectOption(originobject,_rating);
-
-                        if (_option && _option.length)
-                        {
-                            // set rating and set select
-                            _els[elid].setrating = _rating;
-                            originobject.find('option').attr('selected',false);
-                            _option.attr('selected',true);
-                            originobject.change();
-                        }
-                    }
-                });
-
                 object.on('mouseleave',function(){
-                    var _this = $(this);
                     var _rating = _els[elid].setrating;
 
                     if (_rating >=1 && _rating <= 5)
                     {
-                        displayRating(settings,_this,_rating);
+                        displayRating(settings,object,_rating);
                     }
                     else
                     {
-                        _this.find('.speedy-rating-star').removeClass('speedy-rating-star-on').html(settings.html_off);
+                        object.find('.speedy-rating-star').removeClass('speedy-rating-star-on').html(settings.html_off);
                     }
 
                     last_hit = false;
+                });
+
+                object.find('.speedy-rating-star').on('mouseenter',function() {
+                    if (last_hit != this) {
+                        last_hit = this;
+                        var _this = $(this);
+                        var _rating = parseInt(_this.attr('data-rating'));
+
+                        if (_rating && _rating <= 5 && _rating >= 1) {
+                            displayRating(settings, object, _rating);
+                        }
+                    }
+                    return false;
+                }).on('mousedown touchstart',function(){
+                    var _this = $(this);
+                    var _rating = parseInt(_this.attr('data-rating'));
+                    if (_rating)
+                    {
+                        _els[elid].setrating = _rating;
+                        originobject.val(_rating);
+                        object.trigger('mouseleave');
+                    }
+                    last_hit = this;
+                    return false;
+                }).on('mouseup touchend',function(){
+                    if (last_hit == this)
+                    {
+                        var _this = $(this);
+                        var _rating = parseInt(_this.attr('data-rating'));
+                        if (_rating)
+                        {
+                            _els[elid].setrating = _rating;
+                            originobject.val(_rating);
+                            object.trigger('mouseleave');
+                        }
+                    }
+                    return false;
                 });
 
                 //check if value loaded
