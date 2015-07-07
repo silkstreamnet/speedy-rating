@@ -26,7 +26,7 @@
         {
             if (defaults.hasOwnProperty(p))
             {
-                var attr = getAttr(object,'data-'+ p.toLowerCase());
+                var attr = getAttr(object,'data-'+ p.toLowerCase().replace('_',''));
                 if (attr)
                 {
                     settings[p] = attr;
